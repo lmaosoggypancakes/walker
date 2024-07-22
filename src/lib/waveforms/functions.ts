@@ -6,10 +6,10 @@ export const new_f = (fn: (input: number) => number, amplitude: number, freq: nu
 }  
 
 export const generateLookupTable = (fn: (input: number) => number, domain: number) => {
-    //creates a lookup table for all x in [0, domain)
-    const dt = domain / 1000
+    //creates a lookup table for all x in [0, domain) which is a periodic domain1
+    const dt = domain / 500
     const table: number[] = [] // table[i] = fn(i*dt)
-    for(let i = 0; i < 1000; i++) {
+    for(let i = 0; i < 500; i++) {
         table.push(fn(i*dt))
     }
     return table;

@@ -3,7 +3,9 @@
 	import type { FunctionMeta } from "../types";
     import { generateLookupTable } from "../lib/waveforms/functions"
 	import { new_f } from '$lib/waveforms/functions';
+    import { createEventDispatcher } from 'svelte';
 
+    const dispatch = createEventDispatcher();
     let canvas: HTMLCanvasElement
     let context: CanvasRenderingContext2D
     let table: number[]
@@ -30,6 +32,9 @@
         const y = canvas.height
         const x = canvas.width
         table = generateLookupTable(fn, 4*Math.PI)
+        dispatch("new_table", {
+            table
+        })
         context.beginPath()
         for(let i = 0; i < x; i++) {
             if (i == 0) {
